@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+		<title>課題</title>
+		<meta charset="utf-8">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.9.0/css/flag-icon.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet" type="text/css">
+	<!--	<script src="clock.js"></script>-->
+		<link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet"> </head>
+<body>
+		<section class="worldclock">
+				<div class="japan-time">
+						<h2>World Clock</h2>
+						<h3>Japan</h3>
+						<div class="jp-flag">●</div>
+						<div class="japan-day">
+								<div id="clock-date"></div>
+								<div id="clock-time"></div>
+						</div>
+				</div>
+				<div class="world-time">
+						<div class="hawai-time">
+								<h3>Hawaii</h3> <input type="hidden" id="hawai" value="-19"> <i class="flag-icon flag-icon-us"></i>
+								<div class="hawai-day">
+										<div id="hawai-date"></div>
+										<div id="hawai-time"></div>
+								</div>
+						</div>
+						<div class="england-time">
+								<h3>England</h3> <input type="hidden" id="england" value="8"> <i class="flag-icon flag-icon-gb"></i>
+								<div class="england-day">
+										<div id="england-date"></div>
+										<div id="england-time"></div>
+								</div>
+						</div>
+				</div>
+		</section>
+		<script>
+		function JapanClock() {
+				// 曜日を表す各文字列の配列
+				var weeks = ["Sun", "Mon", "The", "Wed", "Thu", "Fri", "Sat"];
+				// 現在日時を表すインスタンスを取得
+				var now = new Date();
+				var year = now.getFullYear();
+				// 月 0~11で取得されるので実際の月は+1したものとなる
+				var month = now.getMonth() + 1;
+				var days = now.getDate();
+				// 曜日 0~6で日曜始まりで取得されるのでweeks配列のインデックスとして指定する
+				//weeksの配列内容が 0=日,1=月,2=火,3=水,4=木,5=金,6=土のため、
+				//現在の日にちの数字を配列に入れることで文字化している。
+				var week = weeks[now.getDay()];
+				//  console.log(now.getDay());
+				var houres = now.getHours();
+				var minutes = now.getMinutes();
+				var seconds = now.getSeconds();
+				// 日付時刻文字列のなかで常に2ケタにしておきたい部分はここで処理
+				//もしも10以下の数であれば各変数の前に"0"を付けて再代入。
+				if (month < 10) {
+						month = "0" + month
+				};
+				if (days < 10) {
+						days = "0" + days
+				};
+				if (minutes < 10) {
+						minutes = "0" + minutes
+				};
+				if (seconds < 10) {
+						seconds = "0" + seconds
+				};
+				//getElemtnByIdでidを取得して取得したidに下記の年月日曜日時間分秒を表示する
+				document.getElementById("clock-date").innerHTML = year + "/" + month + "/" + days + " [" + week + "]";
+				document.getElementById("clock-time").innerHTML = houres + ":" + minutes + ":" + seconds;
+		}
+
+		function HawaiClock() {
+				var jisa = parseInt(document.getElementById('hawai').value);
+				var weeks = ["Sun", "Mon", "The", "Wed", "Thu", "Fri", "Sat"];
+				var japan = (new Date()).getTime();
+				var jikan = new Date(japan + jisa * 60 * 60 * 1000);
+
+				//日付と時刻を求める
+				var year = jikan.getFullYear();
+				var month = jikan.getMonth() + 1;
+				var week = weeks[jikan.getDay()];
+				var day = jikan.getDate();
+				var hour = jikan.getHours();
+				var minu = jikan.getMinutes();
+				var sec = jikan.getSeconds();
+
+				if (hour < 10) {
+						hour = "0" + hour
+				};
+				if (minu < 10) {
+						minu = "0" + minu
+				};
+				if (sec < 10) {
+						sec = "0" + sec
+				};
+
+				document.getElementById("hawai-date").innerHTML = year + "/" + month + "/" + day + "[" + week + "]";
+				document.getElementById("hawai-time").innerHTML = hour + ":" + minu + ":" + sec;
+		}
+
+		function EnglandClock() {
+				var jisa = parseInt(document.getElementById('england').value);
+				var weeks = ["Sun", "Mon", "The", "Wed", "Thu", "Fri", "Sat"];
+				var japan = (new Date()).getTime();
+				var jikan = new Date(japan + jisa * 60 * 60 * 1000);
+				//日付と時刻を求める
+				var year = jikan.getFullYear();
+				var month = jikan.getMonth() + 1;
+				var week = weeks[jikan.getDay()];
+				var day = jikan.getDate();
+				var hour = jikan.getHours();
+				var minu = jikan.getMinutes();
+				var sec = jikan.getSeconds();
+
+				if (hour < 10) {
+						hour = "0" + hour
+				};
+				if (minu < 10) {
+						minu = "0" + minu
+				};
+				if (sec < 10) {
+						sec = "0" + sec
+				};
+
+				document.getElementById("england-date").innerHTML = year + "/" + month + "/" + day + "[" + week + "]";
+				document.getElementById("england-time").innerHTML = hour + ":" + minu + ":" + sec;
+		}
+		//clock()を毎秒更新することで毎秒の日時が表示される。
+		setInterval(JapanClock, 1000);
+		setInterval(HawaiClock, 1000);
+		setInterval(EnglandClock, 1000);
+
+		</script>
+</body>
+</html>
