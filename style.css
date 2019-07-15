@@ -1,0 +1,57 @@
+.flex {
+		display: flex;
+		justify-content: center;
+}
+
+h2, h3 {
+		font-family: 'Monoton', cursive;
+		color: white;
+		margin: 0;
+}
+
+.worldclock {
+		background-color: black;
+}
+
+.japan-time {
+		text-align: center;
+		font-size: 30px;
+}
+
+.japan-time>h2 {
+		text-align: center;
+		margin: 0;
+		font-size: 40px;
+}
+
+i {
+		font-size: 50px;
+		border: 1px solid;
+}
+
+.world-time {
+		display: flex;
+		justify-content: space-around;
+}
+
+.japan-day {
+		font-family: 'Monoton', cursive;
+		color: white;
+}
+
+.hawai-day, .england-day {
+		font-family: 'Monoton', cursive;
+		display: inline-block;
+		color: white;
+}
+
+.jp-flag {
+		border: solid 1px #000000;
+		color: #DC143C;
+		background-color: white;
+		width: 150px;
+		height: 100px;
+		font-size: 72px;
+		line-height: 100px;
+		margin: 5px auto;
+}
